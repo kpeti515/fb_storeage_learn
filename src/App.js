@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
 import { useForm } from 'react-hook-form'
-import 'firebase/analytics'
-import 'firebase/database'
-import 'firebase/storage'
+
 import { pswRef } from './firebase/firebase'
 
 function App() {

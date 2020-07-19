@@ -1,16 +1,18 @@
 import * as firebase from "firebase/app"
-require('dotenv').config()
+import 'firebase/analytics'
+import 'firebase/database'
+import 'firebase/storage'
 
-console.log(process.env.API_KEY);
+console.log('asd', process.env.API_KEY);
 var firebaseConfig = {
-  apiKey: JSON.stringify(process.env.API_KEY),
-  authDomain: JSON.stringify(process.env.AUTH_DOMAIN),
-  databaseURL: JSON.stringify(process.env.DATABASE_URL),
-  projectId: JSON.stringify(process.env.PROJECT_ID),
-  storageBucket: JSON.stringify(process.env.STORAGE_BUCKET),
-  messagingSenderId: JSON.stringify(process.env.MESSAGING_ID),
-  appId: JSON.stringify(process.env.APP_ID),
-  measurementId: JSON.stringify(process.env.MEASUREMENT_ID)
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
