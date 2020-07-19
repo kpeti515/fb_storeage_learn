@@ -1,27 +1,13 @@
 import React from 'react';
 import './App.css';
-import { useForm } from 'react-hook-form'
-
-import { pswRef } from './firebase/firebase'
+import PswForm from './components/Psw_form'
 
 function App() {
-  const { handleSubmit, register } = useForm()
-
-  const onSubmit = (data) => {
-    console.log(data)
-    const fileRef = pswRef.child(data.psw[0].name)
-    fileRef.put(data.psw[0]).then(() => {
-      console.log('File uploaded:' + data.psw[0].name);
-    })
-  };
+  
   return (
     <div className="App">
       <header className="App-header">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="psw">Select a file:</label>
-          <input required ref={register} type="file" name="psw" />
-          <button>Submit</button>
-        </form>
+        <PswForm />
       </header>
     </div>
   );
