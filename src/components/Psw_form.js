@@ -19,11 +19,7 @@ const PswForm = (props) => {
       console.log('File uploaded:');
     })
   }
-  const submitData = (...props) => {
-    setTimeout(() => {
-      props.onRequestClose()
-    }, 3000);
-  }
+  
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input

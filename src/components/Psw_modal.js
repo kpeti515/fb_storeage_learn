@@ -9,7 +9,6 @@ const PswModal = (props) => {
     onRequestClose={props.onRequestClose}
   >
     <PswForm {...props}/>
-    <button >Submit</button>
   </Modal>
   )
 }
