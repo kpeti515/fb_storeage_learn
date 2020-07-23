@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import PswForm from './components/Psw_form'
+import PswPage from './components/Psw_page'
 
 function App() {
   
   return (
     <div className="App">
       <header className="App-header">
-        <PswForm />
+        <PswPage />
       </header>
     </div>
   );
