@@ -15,9 +15,23 @@ const PswForm = (props) => {
       return filePathParts.length < 2 ? "" : ('.' + filePathParts.pop())
     }
     const fileRef = pswRef.child(uuidv4() + fileExtension(data.psw[0].name)) // TODO: metadatába lementeni: data.supplier+ data.drawingNumber + datepicker ++ csak PDF-et fogadjon el
-    fileRef.put(data.psw[0]).then(() => {
-      console.log('File uploaded:');
-    }).then(props.onRequestClose)
+    const addMeta = {
+      customMetadata: {
+        'project': data.project,
+        'customer': data.customer,
+        'drawingNumber': data.drawingNumber,
+        'pswStatus' : data.pswStatus,
+        'supplier': data.supplier
+      }
+    }
+    async function upload(){
+      await fileRef.put(data.psw[0])
+      await fileRef.updateMetadata(addMeta)
+      console.log('uploadSuccess')
+    }
+    upload()
+    .then(props.onRequestClose)
+    
   }
 
   return (
