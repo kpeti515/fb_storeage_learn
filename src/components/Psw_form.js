@@ -8,13 +8,13 @@ const PswForm = (props) => {
   const { handleSubmit, register } = useForm()
 
   const onSubmit = (data) => {
-    console.log(props)
-    console.log(data)
+    // console.log(props)
+    // console.log(data)
     const fileExtension = (filePath) => {
       const filePathParts = filePath.split('.')
       return filePathParts.length < 2 ? "" : ('.' + filePathParts.pop())
     }
-    const fileRef = pswRef.child(uuidv4() + fileExtension(data.psw[0].name)) // TODO: metadatába lementeni: data.supplier+ data.drawingNumber + datepicker ++ csak PDF-et fogadjon el
+    const fileRef = pswRef.child(uuidv4() + fileExtension(data.psw[0].name)) // TODO: metadatába lementeni: datepicker
     const addMeta = {
       customMetadata: {
         'project': data.project,
@@ -27,7 +27,7 @@ const PswForm = (props) => {
     async function upload(){
       await fileRef.put(data.psw[0])
       await fileRef.updateMetadata(addMeta)
-      console.log('uploadSuccess')
+      console.log('uploaded!')
     }
     upload()
     .then(props.onRequestClose)
