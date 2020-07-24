@@ -8,18 +8,18 @@ const PswForm = (props) => {
   const { handleSubmit, register } = useForm()
 
   const onSubmit = (data) => {
+    console.log(props)
     console.log(data)
     const fileExtension = (filePath) => {
       const filePathParts = filePath.split('.')
       return filePathParts.length < 2 ? "" : ('.' + filePathParts.pop())
     }
-    console.log('Fájlkiterjesztés:' + fileExtension(data.psw[0].name));
     const fileRef = pswRef.child(uuidv4() + fileExtension(data.psw[0].name)) // TODO: metadatába lementeni: data.supplier+ data.drawingNumber + datepicker ++ csak PDF-et fogadjon el
     fileRef.put(data.psw[0]).then(() => {
       console.log('File uploaded:');
-    })
+    }).then(props.onRequestClose)
   }
-  
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input
