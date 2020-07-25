@@ -1,13 +1,18 @@
 
 import React from 'react';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css'
 import { useForm } from 'react-hook-form'
 import { pswRef } from '../firebase/firebase'
 import { v4 as uuidv4 } from 'uuid';
+import SingleDatePicker from './SingleDatePicker'
+
 
 const PswForm = (props) => {
+ 
   const { handleSubmit, register } = useForm()
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // console.log(props)
     // console.log(data)
     const fileExtension = (filePath) => {
@@ -20,18 +25,19 @@ const PswForm = (props) => {
         'project': data.project,
         'customer': data.customer,
         'drawingNumber': data.drawingNumber,
-        'pswStatus' : data.pswStatus,
+        'pswStatus': data.pswStatus,
         'supplier': data.supplier
       }
     }
-    async function upload(){
-      await fileRef.put(data.psw[0])
-      await fileRef.updateMetadata(addMeta)
-      console.log('uploaded!')
-    }
-    upload()
-    .then(props.onRequestClose)
-    
+
+    await fileRef.put(data.psw[0])
+    await fileRef.updateMetadata(addMeta)
+      .then(props.onRequestClose)
+    console.log('uploaded!')
+
+
+
+
   }
 
   return (
@@ -81,6 +87,7 @@ const PswForm = (props) => {
       </div>
       <div>
         <label htmlFor="datePicker">PSW aláírásának ideje Linamar által</label>
+        <SingleDatePicker />
       </div>
       <label htmlFor="psw">PSW csatolása:</label>
       <input
