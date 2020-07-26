@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import moment from 'moment'
 import localization from 'moment/locale/hu'
 import 'react-dates/initialize';
-import {  SingleDatePicker } from 'react-dates'
+import { SingleDatePicker } from 'react-dates'
 import 'react-dates/lib/css/_datepicker.css'
 moment().locale("hu", localization)
 
@@ -12,17 +12,20 @@ const SingleDatePickerForm = () => {
     setDate(() => validFrom)
   }
 
-  const [focused, setFocused] = useState(false)
+  const [focused, setFocused] = useState({ focused: false })
   const setCalendarFocus = (focus) => {
     setFocused(() => focus)
   }
+
   return (
     <SingleDatePicker
-      date={date} // momentPropTypes.momentObj or null
-      onDateChange={datePick} // PropTypes.func.isRequired
-      focused={focused} // PropTypes.bool
-      onFocusChange={setCalendarFocus} // PropTypes.func.isRequired
-      id="your_unique_id" // PropTypes.string.isRequired,
+      date={date}
+      onDateChange={datePick}
+      focused={focused.focused}
+      onFocusChange={setCalendarFocus}
+      numberOfMonths={1}
+      isOutsideRange={() => false}
+      block
     />
   )
 }
