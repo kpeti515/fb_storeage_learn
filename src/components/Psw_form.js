@@ -5,15 +5,12 @@ import 'react-dates/lib/css/_datepicker.css'
 import { useForm } from 'react-hook-form'
 import { pswRef } from '../firebase/firebase'
 import { v4 as uuidv4 } from 'uuid';
-import SingleDatePicker from './SingleDatePicker'
-
 
 const PswForm = (props) => {
 
   const { handleSubmit, register } = useForm()
 
   const onSubmit = async (data) => {
-    // console.log(props)
     console.log(data)
     const fileExtension = (filePath) => {
       const filePathParts = filePath.split('.')
@@ -84,10 +81,7 @@ const PswForm = (props) => {
       </div>
       <div>
         <label htmlFor="datePicker">PSW aláírásának ideje Linamar által</label>
-        <SingleDatePicker 
-        ref={register}
-        name="validationDate"
-        required/>
+        <input type="date" placeholder="ép," name="validationDate" ref={register} />
       </div>
       <label htmlFor="psw">PSW csatolása:</label>
       <input
