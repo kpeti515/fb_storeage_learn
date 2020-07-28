@@ -5,6 +5,7 @@ import 'react-dates/lib/css/_datepicker.css'
 import { useForm } from 'react-hook-form'
 import { pswRef } from '../firebase/firebase'
 import { v4 as uuidv4 } from 'uuid';
+import moment from 'moment'
 
 const PswForm = (props) => {
 
@@ -81,7 +82,7 @@ const PswForm = (props) => {
       </div>
       <div>
         <label htmlFor="datePicker">PSW aláírásának ideje Linamar által</label>
-        <input type="date" placeholder="ép," name="validationDate" ref={register} />
+        <input type="date" value={moment().format("YYYY-MM-DD")} name="validationDate" ref={register} />
       </div>
       <label htmlFor="psw">PSW csatolása:</label>
       <input
