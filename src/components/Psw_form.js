@@ -1,9 +1,7 @@
 
 import React from 'react';
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css'
 import { useForm } from 'react-hook-form'
-import { pswRef } from '../firebase/firebase'
+import { pswDb, pswStore } from '../firebase/firebase'
 import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment'
 
@@ -12,22 +10,31 @@ const PswForm = (props) => {
   const { handleSubmit, register } = useForm()
 
   const onSubmit = async (data) => {
+    const inputs = {
+      'project': data.project,
+      'customer': data.customer,
+      'drawingNumber': data.drawingNumber,
+      'pswStatus': data.pswStatus,
+      'supplier': data.supplier,
+      'validationDate': data.validationDate
+    }
     console.log(data)
+    const itemName = uuidv4()
     const fileExtension = (filePath) => {
       const filePathParts = filePath.split('.')
       return filePathParts.length < 2 ? "" : ('.' + filePathParts.pop())
     }
-    const fileRef = pswRef.child(uuidv4() + fileExtension(data.psw[0].name)) // TODO: metadatába lementeni: datepicker
+
+    const fileRef = pswStore.child(itemName + fileExtension(data.psw[0].name)) // TODO: metadatába lementeni: datepicker
     const addMeta = {
       customMetadata: {
-        'project': data.project,
-        'customer': data.customer,
-        'drawingNumber': data.drawingNumber,
-        'pswStatus': data.pswStatus,
-        'supplier': data.supplier,
-        'validationDate': data.validationDate
+        ...inputs
       }
     }
+    const docRef = pswDb.doc(itemName)
+    await docRef.set({
+      ...inputs
+    });
 
     await fileRef.put(data.psw[0])
     await fileRef.updateMetadata(addMeta)
@@ -76,7 +83,7 @@ const PswForm = (props) => {
     <input name="pswStatus" type="radio" value="Feltételesen elfogadott" required ref={register} />
           </label>
           <label>Elutasított
-    <input name="pswStatus" type="radio" value="Elutasított"  required ref={register} />
+    <input name="pswStatus" type="radio" value="Elutasított" required ref={register} />
           </label>
         </div>
       </div>

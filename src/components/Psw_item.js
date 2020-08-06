@@ -1,27 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { pswStore } from '../firebase/firebase'
 const PswItem = ({
-  project,
-  customer,
-  supplier,
-  drawingNumber,
-  validationDate,
-  validUntil,
-  linkToFile
+  psw
 }) => {
+  
+    pswStore.child(`${psw.id}.JPG`).getDownloadURL().then((url) => {
+    const a = document.getElementById(psw.id)  
+    a.href = url
+
+    })
 
   return (
     <div>
-      <h3>{drawingNumber}</h3>
-      <p>{supplier}</p>
-      <p>{project}</p>
-      <p>{customer}</p>
-      <Link to={linkToFile}>
-        PSW
-        <img alt='PdfIcon' src='../pictures/1-02-512.webp'/>
-      </Link>
-      <p>Érvényességi idő: {validationDate} - {validUntil}</p>
+      <h3>{psw.drawingNumber}</h3>
+      <p>{psw.supplier}</p>
+      <p>{psw.project}</p>
+      <p>{psw.customer}</p>
+      <a id={`${psw.id}`}> Fájl letöltése</a>
+      <p>Érvényességi idő: {psw.validationDate} - {psw.validUntil}</p>
     </div>
   )
 }

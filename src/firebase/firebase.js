@@ -2,6 +2,7 @@ import * as firebase from "firebase/app"
 import 'firebase/analytics'
 import 'firebase/database'
 import 'firebase/storage'
+import 'firebase/firestore'
 
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -17,6 +18,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-const storage = firebase.storage();
-const storageRef = storage.ref();
-export const pswRef = storageRef.child('psw')
+
+export const pswDb = firebase.firestore().collection('psw')
+
+export const pswStore = firebase.storage().ref().child('psw')
