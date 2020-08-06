@@ -18,7 +18,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-
 export const pswDb = firebase.firestore().collection('psw')
 
+export const storage = firebase.storage()
+export const storageRef = firebase.storage().ref()
 export const pswStore = firebase.storage().ref().child('psw')

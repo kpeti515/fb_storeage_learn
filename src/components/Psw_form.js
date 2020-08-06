@@ -1,9 +1,12 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form'
-import { pswDb, pswStore } from '../firebase/firebase'
+import { pswDb, pswStore, storageRef } from '../firebase/firebase'
 import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment'
+
+// Todo: value={moment().format("YYYY-MM-DD")} + onchange legyen beépítve a datepickerbe
+
 
 const PswForm = (props) => {
 
@@ -18,26 +21,23 @@ const PswForm = (props) => {
       'supplier': data.supplier,
       'validationDate': data.validationDate
     }
-    console.log(data)
+
     const itemName = uuidv4()
+
     const fileExtension = (filePath) => {
       const filePathParts = filePath.split('.')
       return filePathParts.length < 2 ? "" : ('.' + filePathParts.pop())
     }
 
-    const fileRef = pswStore.child(itemName + fileExtension(data.psw[0].name)) // TODO: metadatába lementeni: datepicker
-    const addMeta = {
-      customMetadata: {
-        ...inputs
-      }
-    }
+    const fileRef = pswStore.child(itemName + fileExtension(data.psw[0].name))
     const docRef = pswDb.doc(itemName)
+
     await docRef.set({
+      fileUrl: `${storageRef}${fileRef.location.path}`,
       ...inputs
     });
 
     await fileRef.put(data.psw[0])
-    await fileRef.updateMetadata(addMeta)
       .then(props.onRequestClose)
     console.log('uploaded!')
   }
@@ -89,7 +89,7 @@ const PswForm = (props) => {
       </div>
       <div>
         <label htmlFor="datePicker">PSW aláírásának ideje Linamar által</label>
-        <input type="date" value={moment().format("YYYY-MM-DD")} name="validationDate" ref={register} />
+        <input type="date"  name="validationDate" ref={register} />
       </div>
       <label htmlFor="psw">PSW csatolása:</label>
       <input

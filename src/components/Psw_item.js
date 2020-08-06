@@ -1,22 +1,21 @@
 import React from 'react'
-import { pswStore } from '../firebase/firebase'
+import { storage } from '../firebase/firebase'
 const PswItem = ({
   psw
 }) => {
-  
-    pswStore.child(`${psw.id}.JPG`).getDownloadURL().then((url) => {
-    const a = document.getElementById(psw.id)  
+  const fileRef = storage.refFromURL(`${psw.fileUrl}`)
+  fileRef.getDownloadURL().then((url) => {
+    const a = document.getElementById(psw.id)
     a.href = url
-
-    })
+  })
 
   return (
     <div>
-      <h3>{psw.drawingNumber}</h3>
-      <p>{psw.supplier}</p>
-      <p>{psw.project}</p>
-      <p>{psw.customer}</p>
-      <a id={`${psw.id}`}> Fájl letöltése</a>
+      <h3>Rajzszám: {psw.drawingNumber}</h3>
+      <p>Beszállító: {psw.supplier}</p>
+      <p>Projekt: {psw.project}</p>
+      <p>Vevő: {psw.customer}</p>
+      <a id={`${psw.id}`} href="Will have via fileRef.then()" target="_blank">PSW Fájl megnyitása</a>
       <p>Érvényességi idő: {psw.validationDate} - {psw.validUntil}</p>
     </div>
   )
