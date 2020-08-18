@@ -1,10 +1,8 @@
-const pswReducer = (state, action) => {
+const supplierContactReducer = (state, action) => {
   switch (action.type) {
-    case 'LIST_PSW':
-      return action.pswList
     case 'LIST_SUPPLIERCONTACT':
       return action.supplierContactList  
-    case 'ADD_PSW':
+    case 'ADD_SUPPLIERCONTACT':
       return [
         ...state,
         {project: action.project,
@@ -25,4 +23,4 @@ const pswReducer = (state, action) => {
   }
 }
 
-export {pswReducer as default}
+export {supplierContactReducer as default}

@@ -18,6 +18,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+export const supplierContactDb = firebase.firestore().collection('supplierContact')
 export const pswDb = firebase.firestore().collection('psw')
 
 export const storage = firebase.storage()
