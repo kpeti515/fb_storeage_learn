@@ -65,7 +65,7 @@ const SupplierContactForm = (props) => {
     />
      <input
         type="text"
-        placeholder="utca"
+        placeholder="utca, házszám"
         ref={register}
         name="street"
       />

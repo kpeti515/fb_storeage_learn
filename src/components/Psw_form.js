@@ -3,9 +3,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form'
 import { pswDb, pswStore, storageRef } from '../firebase/firebase'
 import { v4 as uuidv4 } from 'uuid';
-import moment from 'moment'
-
-// Todo: value={moment().format("YYYY-MM-DD")} + onchange legyen beépítve a datepickerbe
 
 
 const PswForm = (props) => {
