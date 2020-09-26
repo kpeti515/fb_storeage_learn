@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal'
 import SupplierContactForm from './SupplierContact_form'
+Modal.setAppElement('#root')
 const SupplierContactModal = (props) => {
   
   return (

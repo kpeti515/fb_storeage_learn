@@ -29,13 +29,14 @@ const PswForm = (props) => {
     const fileRef = pswStore.child(itemName + fileExtension(data.psw[0].name))
     const docRef = pswDb.doc(itemName)
 
+    await fileRef.put(data.psw[0])
+      .then(props.onRequestClose)
+
     await docRef.set({
       fileUrl: `${storageRef}${fileRef.location.path}`,
       ...inputs
     });
-
-    await fileRef.put(data.psw[0])
-      .then(props.onRequestClose)
+    
     console.log('uploaded!')
   }
 

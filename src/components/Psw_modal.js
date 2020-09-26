@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal'
 import PswForm from './Psw_form'
+
+Modal.setAppElement('#root')
 const PswModal = (props) => {
   
   return (

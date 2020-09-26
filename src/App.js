@@ -45,7 +45,7 @@ function App() {
                 <Route path="/supplierContacts">
                   <SupplierContactPage />
                 </Route>
-                <Route path="/" exact="true">
+                <Route path="/" exact={true}>
                   <Home />
                 </Route>
                 <Route path="*">
