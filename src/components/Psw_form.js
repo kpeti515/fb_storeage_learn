@@ -30,13 +30,13 @@ const PswForm = (props) => {
     const docRef = pswDb.doc(itemName)
 
     await fileRef.put(data.psw[0])
-      .then(props.onRequestClose)
 
     await docRef.set({
       fileUrl: `${storageRef}${fileRef.location.path}`,
       ...inputs
     });
-    
+    props.onRequestClose()
+
     console.log('uploaded!')
   }
 
@@ -87,7 +87,7 @@ const PswForm = (props) => {
       </div>
       <div>
         <label htmlFor="datePicker">PSW aláírásának ideje Linamar által</label>
-        <input type="date"  name="validationDate" ref={register} />
+        <input type="date" name="validationDate" ref={register} />
       </div>
       <label htmlFor="psw">PSW csatolása:</label>
       <input
