@@ -10,20 +10,22 @@ const PswForm = (props) => {
   const { handleSubmit, register } = useForm()
 
   const onSubmit = async (data) => {
-    const inputs = {
-      'project': data.project,
-      'customer': data.customer,
-      'drawingNumber': data.drawingNumber,
-      'pswStatus': data.pswStatus,
-      'supplier': data.supplier,
-      'validationDate': data.validationDate
-    }
+   
 
     const itemName = uuidv4()
 
     const fileExtension = (filePath) => {
       const filePathParts = filePath.split('.')
       return filePathParts.length < 2 ? "" : ('.' + filePathParts.pop())
+    }
+    const inputs = {
+      'project': data.project,
+      'customer': data.customer,
+      'drawingNumber': data.drawingNumber,
+      'pswStatus': data.pswStatus,
+      'supplier': data.supplier,
+      'validationDate': data.validationDate,
+      'fileExtension': fileExtension(data.psw[0].name)
     }
 
     const fileRef = pswStore.child(itemName + fileExtension(data.psw[0].name))
