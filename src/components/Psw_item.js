@@ -3,11 +3,12 @@ import { storage } from '../firebase/firebase'
 const PswItem = ({
   psw
 }) => {
-  const fileRef = storage.refFromURL(`${psw.fileUrl}`)
-  fileRef.getDownloadURL().then((url) => {
-    const a = document.getElementById(psw.id)
-    a.href = url
-  })
+  const downloadPsw = (e) => {
+    e.preventDefault()
+    storage.refFromURL(`${psw.fileUrl}`).getDownloadURL().then((url) => {
+      window.location.href = url
+    })
+  }
 
   return (
     <div>
@@ -15,7 +16,7 @@ const PswItem = ({
       <p>Beszállító: {psw.supplier}</p>
       <p>Projekt: {psw.project}</p>
       <p>Vevő: {psw.customer}</p>
-      <a id={`${psw.id}`} href="Will have via fileRef.then()" target="_blank">PSW Fájl megnyitása</a>
+      <button onClick={downloadPsw}>PSW letöltése</button>
       <p>Érvényességi idő: {psw.validationDate} - {psw.validUntil}</p>
     </div>
   )
