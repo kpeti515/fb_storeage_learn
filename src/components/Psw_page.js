@@ -21,7 +21,7 @@ function PswPage() {
           dispatch({ type: 'LIST_PSW', pswList })
         }
       })
-    
+
     return () => unsubscribePsw()
   }, [])
 
@@ -39,7 +39,18 @@ function PswPage() {
       <button onClick={openModal}>PSW rögzítése</button>
       <FirebaseContext.Provider value={{ psw, dispatch }}>
         <h1>PSW-k</h1>
-        <PswList />
+        <table>
+          <thead>
+            <tr>
+              <th>Rajzszám</th>
+              <th>Beszállító</th>
+              <th>Projekt</th>
+              <th>Vevő</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <PswList />
+        </table>
       </FirebaseContext.Provider>
       <PswModal isOpen={modalIsOpen} onRequestClose={closeModal} />
     </>
