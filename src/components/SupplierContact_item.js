@@ -13,16 +13,21 @@ const SupplierContact = ({
   }
 
   return (
-    <div>
-      <h3>{supplierContact.title} {supplierContact.firstName} {supplierContact.lastName}, {supplierContact.supplier}</h3>
-      <p>E-mail:<a href={`mailto:${supplierContact.email}`}>{supplierContact.email}</a></p>
-      <p>Mobil: <a href={`tel:${supplierContact.phoneMobile}`}>{supplierContact.phoneMobile}</a></p>
-      <p>Munkahelyi szám: <a href={`tel:${supplierContact.phoneBusiness}`}>{supplierContact.phoneBusiness}</a></p>
-      <p>Cég címe: <a href={`https://www.google.com/maps/search/?api=1&query=${supplierContact.country} ${supplierContact.city} ${supplierContact.street}`} target="blank">{supplierContact.country} {supplierContact.zipCode}-{supplierContact.city} {supplierContact.street}</a></p>
-      <p>Weboldal: <a  href={`https://${supplierContact.website}`} target="blank">{supplierContact.website}</a></p>
-      <button onClick={openModal}>QR kóddal felvétel a telefonkönyvbe</button>
-      <SupplierContactQRModal isOpen={modalIsOpen} onRequestClose={closeModal} supplierContact={supplierContact}/>
-    </div>
+    <React.Fragment>
+      <tbody>
+        <tr>
+        <td><button onClick={openModal}>QR kód</button></td>
+          <td>{supplierContact.supplier}</td>
+          <td>{supplierContact.title} {supplierContact.firstName} {supplierContact.lastName}</td>
+          <td><a href={`mailto:${supplierContact.email}`}>{supplierContact.email}</a></td>
+          <td><a href={`tel:${supplierContact.phoneMobile}`}>{supplierContact.phoneMobile}</a></td>
+          <td><a href={`tel:${supplierContact.phoneBusiness}`}>{supplierContact.phoneBusiness}</a></td>
+          <td><a href={`https://www.google.com/maps/search/?api=1&query=${supplierContact.country} ${supplierContact.city} ${supplierContact.street}`} target="blank">{supplierContact.country} {supplierContact.zipCode}-{supplierContact.city} {supplierContact.street}</a></td>
+          <td><a href={`${supplierContact.website}`} target="blank">{supplierContact.website}</a></td>
+        </tr>
+      </tbody>
+      <SupplierContactQRModal isOpen={modalIsOpen} onRequestClose={closeModal} supplierContact={supplierContact} />
+    </React.Fragment>
   )
 }
 

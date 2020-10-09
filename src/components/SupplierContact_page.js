@@ -39,7 +39,21 @@ function SupplierContactPage() {
       <button onClick={openModal}>Beszállítói kapcsolat felvétele</button>
       <FirebaseContext.Provider value={{ supplierContact, dispatch }}>
         <h1>Beszállítói kapcsolatok</h1>
+        <table>
+        <thead>
+            <tr>
+              <th>QR kód</th>
+              <th>Beszállító</th>
+              <th>Név</th>
+              <th>E-mail</th>
+              <th>Mobil</th>
+              <th>Vezetékes tel.</th>
+              <th>Telephely</th>
+              <th>Weboldal</th>
+            </tr>
+          </thead>
         <SupplierContactList />
+        </table>
       </FirebaseContext.Provider>
       <SupplierContactModal isOpen={modalIsOpen} onRequestClose={closeModal} />
     </>
