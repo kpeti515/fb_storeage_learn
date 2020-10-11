@@ -17,6 +17,11 @@ const PswForm = (props) => {
       const filePathParts = filePath.split('.')
       return filePathParts.length < 2 ? "" : ('.' + filePathParts.pop())
     }
+    const file = data.psw[0];
+    console.log(file);
+    let fileRef = pswStore.child(itemName + fileExtension(file.name))
+    let docRef = pswDb.doc(itemName)
+
     const inputs = {
       'project': data.project,
       'customer': data.customer,
@@ -24,12 +29,10 @@ const PswForm = (props) => {
       'pswStatus': data.pswStatus,
       'supplier': data.supplier,
       'validationDate': data.validationDate,
-      'fileExtension': fileExtension(data.psw[0].name)
+      'fileExtension': fileExtension(file.name)
     }
-
-    let fileRef = pswStore.child(itemName + fileExtension(data.psw[0].name))
-    let docRef = pswDb.doc(itemName)
-
+    
+    let create = true
     if (props.psw) {
       docRef = pswDb.doc(props.psw.id)
       docRef.update(inputs)
@@ -39,28 +42,22 @@ const PswForm = (props) => {
       }).catch(function (error) {
         console.error("Error removing document: ", error);
       })
-      fileRef = pswStore.child(props.psw.id + fileExtension(data.psw[0].name))
-      await fileRef.put(data.psw[0])
-
-      await docRef.set({
-        fileUrl: `${storageRef}${fileRef.location.path}`,
-        ...inputs
-      })
-  
-      modifyNotification()    
-      return props.onRequestClose()
-
+      fileRef = pswStore.child(props.psw.id + fileExtension(file.name))
+      create = false
     }
 
-    await fileRef.put(data.psw[0])
-
+    await fileRef.put(file)
     await docRef.set({
       fileUrl: `${storageRef}${fileRef.location.path}`,
       ...inputs
     })
-
-    successNotification()    
     props.onRequestClose()
+
+    if (create) {
+      successNotification()
+    } else {
+      modifyNotification()
+    }
   }
 
   return (

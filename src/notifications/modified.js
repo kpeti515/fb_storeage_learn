@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 
 const modifyNotification = () => {
+  toast.dismiss()
   toast.warn('Módosítva', {
     position: "bottom-right",
     autoClose: 5000,

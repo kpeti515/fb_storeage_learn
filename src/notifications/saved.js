@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 
 const successNotification = () => {
+  toast.dismiss()
   toast.success('Mentés kész!', {
     position: "bottom-right",
     autoClose: 5000,

@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 
 const deleteNotification = () => {
+  toast.dismiss()
   toast.error('Törölve', {
     position: "bottom-right",
     autoClose: 5000,

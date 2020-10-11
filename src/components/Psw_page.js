@@ -5,7 +5,6 @@ import FirebaseContext from '../context/FirebaseContext'
 import PswList from './PswList'
 import { pswDb } from '../firebase/firebase'
 
-
 function PswPage() {
   const [psw, dispatch] = useReducer(pswReducer, [])
 

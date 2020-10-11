@@ -47,7 +47,12 @@ const PswItem = ({
             <DownloadLink
               label='PSW letöltése'
               filename={`${psw.drawingNumber}_${psw.supplier}_${psw.project}${psw.fileExtension}`}
-              exportFile={() => storage.refFromURL(`${psw.fileUrl}`).getDownloadURL()}
+              exportFile={async () => {
+                const url = await storage.refFromURL(`${psw.fileUrl}`).getDownloadURL()
+                const response = await fetch(url)
+                return response.blob()
+                }
+              }
             />
           </td>
           <td><button onClick={openPswModal}>Módosítás</button></td>
