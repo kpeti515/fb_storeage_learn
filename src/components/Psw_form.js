@@ -4,13 +4,11 @@ import { useForm } from 'react-hook-form'
 import { pswDb, pswStore, storageRef } from '../firebase/firebase'
 import { v4 as uuidv4 } from 'uuid';
 
-
 const PswForm = (props) => {
 
   const { handleSubmit, register } = useForm()
 
   const onSubmit = async (data) => {
-   
 
     const itemName = uuidv4()
 
@@ -28,18 +26,30 @@ const PswForm = (props) => {
       'fileExtension': fileExtension(data.psw[0].name)
     }
 
-    const fileRef = pswStore.child(itemName + fileExtension(data.psw[0].name))
-    const docRef = pswDb.doc(itemName)
+    let fileRef = pswStore.child(itemName + fileExtension(data.psw[0].name))
+    let docRef = pswDb.doc(itemName)
+
+    if (props.psw) {
+      docRef = pswDb.doc(props.psw.id)
+      docRef.update(inputs)
+
+      pswStore.child(`${props.psw.id}${props.psw.fileExtension}`).delete().then(function () {
+        console.log("Document successfully deleted!")
+      }).catch(function (error) {
+        console.error("Error removing document: ", error);
+      })
+      fileRef = pswStore.child(props.psw.id + fileExtension(data.psw[0].name))
+    }
 
     await fileRef.put(data.psw[0])
 
     await docRef.set({
       fileUrl: `${storageRef}${fileRef.location.path}`,
       ...inputs
-    });
-    props.onRequestClose()
-
+    })
+    
     console.log('uploaded!')
+    props.onRequestClose()
   }
 
   return (
@@ -51,6 +61,7 @@ const PswForm = (props) => {
         required
         autoFocus
         name="project"
+        defaultValue={props.psw && props.psw.project}
       />
       <input
         type="text"
@@ -58,6 +69,7 @@ const PswForm = (props) => {
         ref={register}
         required
         name="drawingNumber"
+        defaultValue={props.psw && props.psw.drawingNumber}
       />
       <input
         type="text"
@@ -65,6 +77,7 @@ const PswForm = (props) => {
         ref={register}
         required
         name="supplier"
+        defaultValue={props.psw && props.psw.supplier}
       />
       <input
         type="text"
@@ -72,24 +85,51 @@ const PswForm = (props) => {
         ref={register}
         required
         name="customer"
+        defaultValue={props.psw && props.psw.customer}
       />
       <div>
         <label htmlFor="datePicker">PSW státusz</label>
         <div>
           <label>Elfogadott
-    <input name="pswStatus" type="radio" value="Elfogadott" required ref={register} />
+            <input
+              name="pswStatus"
+              type="radio"
+              value="Elfogadott"
+              required
+              ref={register}
+              defaultChecked={props.psw && props.psw.pswStatus === 'Elfogadott' ? true : false}
+            />
           </label>
           <label> Feltételesen elfogadott
-    <input name="pswStatus" type="radio" value="Feltételesen elfogadott" required ref={register} />
+            <input
+              name="pswStatus"
+              type="radio"
+              value="Feltételesen elfogadott"
+              required
+              ref={register}
+              defaultChecked={props.psw && props.psw.pswStatus === 'Feltételesen elfogadott' ? true : false}
+            />
           </label>
           <label>Elutasított
-    <input name="pswStatus" type="radio" value="Elutasított" required ref={register} />
+            <input
+              name="pswStatus"
+              type="radio"
+              value="Elutasított"
+              required
+              ref={register}
+              defaultChecked={props.psw && props.psw.pswStatus === 'Elutasított' ? true : false}
+            />
           </label>
         </div>
       </div>
       <div>
         <label htmlFor="datePicker">PSW aláírásának ideje Linamar által</label>
-        <input type="date" name="validationDate" ref={register} />
+        <input
+          type="date"
+          name="validationDate"
+          ref={register}
+          defaultValue={props.psw && props.psw.validationDate}
+        />
       </div>
       <label htmlFor="psw">PSW csatolása:</label>
       <input
