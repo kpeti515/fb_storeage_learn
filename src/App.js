@@ -6,10 +6,8 @@ import {
   Link
 } from "react-router-dom"
 import './App.css';
-// import PswPage from './components/Psw_page'
-// import Home from './components/Home'
-// import SupplierContactPage from './components/SupplierContact_page'
-// import Route404 from './components/Route404'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const PswPage = lazy(() => import('./components/Psw_page'))
 const Home = lazy(() => import('./components/Home'))
@@ -57,6 +55,7 @@ function App() {
         </Router>
 
       </header>
+      <ToastContainer />
     </div>
   );
 }

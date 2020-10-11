@@ -3,6 +3,8 @@ import DownloadLink from "react-download-link"
 import { pswStore, storage, pswDb } from '../firebase/firebase'
 import DeleteConfirmationModal from './DeleteConfirmationModal'
 import PswModal from './Psw_modal'
+import deleteNotification from './../notifications/deleted'
+
 const PswItem = ({
   psw
 }) => {
@@ -22,7 +24,7 @@ const PswItem = ({
   }
   function deleteEntity() {
     pswStore.child(`${psw.id}${psw.fileExtension}`).delete().then(function () {
-      console.log("Document successfully deleted!")
+      deleteNotification()
     }).catch(function (error) {
       console.error("Error removing document: ", error);
     })

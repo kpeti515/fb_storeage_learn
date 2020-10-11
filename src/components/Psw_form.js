@@ -3,7 +3,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form'
 import { pswDb, pswStore, storageRef } from '../firebase/firebase'
 import { v4 as uuidv4 } from 'uuid';
-
+import modifyNotification from './../notifications/modified'
+import successNotification from './../notifications/saved'
 const PswForm = (props) => {
 
   const { handleSubmit, register } = useForm()
@@ -39,6 +40,16 @@ const PswForm = (props) => {
         console.error("Error removing document: ", error);
       })
       fileRef = pswStore.child(props.psw.id + fileExtension(data.psw[0].name))
+      await fileRef.put(data.psw[0])
+
+      await docRef.set({
+        fileUrl: `${storageRef}${fileRef.location.path}`,
+        ...inputs
+      })
+  
+      modifyNotification()    
+      return props.onRequestClose()
+
     }
 
     await fileRef.put(data.psw[0])
@@ -47,8 +58,8 @@ const PswForm = (props) => {
       fileUrl: `${storageRef}${fileRef.location.path}`,
       ...inputs
     })
-    
-    console.log('uploaded!')
+
+    successNotification()    
     props.onRequestClose()
   }
 
