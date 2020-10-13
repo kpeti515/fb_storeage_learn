@@ -146,6 +146,7 @@ const PswForm = (props) => {
         type="file"
         name="psw" />
       <button>Submit</button>
+      <button onClick={props.onRequestClose}>Mégse</button>
     </form>
   )
 }

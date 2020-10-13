@@ -34,7 +34,7 @@ const PswItem = ({
       console.error("Error removing document: ", error);
     });
   }
-
+console.log(psw);
   return (
     <React.Fragment>
       <tbody>
@@ -43,6 +43,8 @@ const PswItem = ({
           <td>{psw.supplier}</td>
           <td>{psw.project}</td>
           <td>{psw.customer}</td>
+          <td>{psw.pswStatus}</td>
+          <td>{psw.validationDate}</td>
           <td>
             <DownloadLink
               label='PSW letöltése'

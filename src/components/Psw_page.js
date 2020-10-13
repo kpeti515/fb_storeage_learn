@@ -45,7 +45,8 @@ function PswPage() {
               <th>Beszállító</th>
               <th>Projekt</th>
               <th>Vevő</th>
-              <th>Link</th>
+              <th>Státusz</th>
+              <th>Aláírás dátuma</th>
             </tr>
           </thead>
           <PswList />

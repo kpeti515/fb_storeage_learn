@@ -20,6 +20,8 @@ firebase.analytics();
 
 export const supplierContactDb = firebase.firestore().collection('supplierContact')
 export const pswDb = firebase.firestore().collection('psw')
+export const projectDb = firebase.firestore().collection('projects')
+
 
 export const storage = firebase.storage()
 export const storageRef = firebase.storage().ref()

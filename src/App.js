@@ -12,7 +12,9 @@ import 'react-toastify/dist/ReactToastify.min.css';
 const PswPage = lazy(() => import('./components/Psw_page'))
 const Home = lazy(() => import('./components/Home'))
 const SupplierContactPage = lazy(() => import('./components/SupplierContact_page'))
+const ProjectNetwork = lazy(() => import('./components/Project_Network'))
 const Route404 = lazy(() => import('./components/Route404'))
+
 
 function App() {
 
@@ -32,6 +34,9 @@ function App() {
                 <li>
                   <Link to="/supplierContacts">Névjegyzék</Link>
                 </li>
+                <li>
+                  <Link to="/projectNetwork">Projectek karbantartása</Link>
+                </li>
               </ul>
             </nav>
 
@@ -42,6 +47,9 @@ function App() {
                 </Route>
                 <Route path="/supplierContacts">
                   <SupplierContactPage />
+                </Route>
+                <Route path="/projectNetwork">
+                  <ProjectNetwork />
                 </Route>
                 <Route path="/" exact={true}>
                   <Home />
