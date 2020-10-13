@@ -29,7 +29,7 @@ const ProjectForm = (props) => {
     }
 
     await docRef.set({
-      inputs
+      ...inputs
     })
     props.onRequestClose()
 

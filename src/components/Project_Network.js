@@ -27,7 +27,7 @@ function ProjectNetwork() {
   function closeProjectModal() {
     setIsOpen(false);
   }
-
+console.log(project);
   return (
     <>
       <button onClick={openProjectModal}>Új projekt felvétele</button>
