@@ -12,8 +12,6 @@ const ProjectForm = (props) => {
 
     const itemName = uuidv4()
 
-    const file = data.psw[0];
-    console.log(file);
     let docRef = projectDb.doc(itemName)
 
     const inputs = {
@@ -24,14 +22,14 @@ const ProjectForm = (props) => {
     }
     
     let create = true
-    if (props.psw) {
-      docRef = projectDb.doc(props.psw.id)
+    if (props.project) {
+      docRef = projectDb.doc(props.project.id)
       docRef.update(inputs)
       create = false
     }
 
     await docRef.set({
-      ...inputs
+      inputs
     })
     props.onRequestClose()
 
@@ -51,7 +49,7 @@ const ProjectForm = (props) => {
         required
         autoFocus
         name="project"
-        defaultValue={props.psw && props.psw.project}
+        defaultValue={props.project && props.project.project}
       />
       <input
         type="text"
@@ -59,7 +57,7 @@ const ProjectForm = (props) => {
         ref={register}
         required
         name="drawingNumber"
-        defaultValue={props.psw && props.psw.drawingNumber}
+        defaultValue={props.project && props.project.drawingNumber}
       />
       <input
         type="text"
@@ -67,7 +65,7 @@ const ProjectForm = (props) => {
         ref={register}
         required
         name="supplier"
-        defaultValue={props.psw && props.psw.supplier}
+        defaultValue={props.project && props.project.supplier}
       />
       <input
         type="text"
@@ -75,7 +73,7 @@ const ProjectForm = (props) => {
         ref={register}
         required
         name="customer"
-        defaultValue={props.psw && props.psw.customer}
+        defaultValue={props.project && props.project.customer}
       />
       <button>Submit</button>
       <button onClick={props.onRequestClose}>Mégse</button>
