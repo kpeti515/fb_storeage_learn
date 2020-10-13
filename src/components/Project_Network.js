@@ -1,6 +1,7 @@
 import React, {useReducer, useEffect} from 'react'
 import { projectDb } from '../firebase/firebase'
 import projectReducer from '../reducers/projectReducer'
+import FirebaseContext from '../context/FirebaseContext'
 import ProjectModal from './Project_Modal'
 
 function ProjectNetwork() {
@@ -19,14 +20,22 @@ function ProjectNetwork() {
 
     return () => unsubscribePsw()
   }, [])
-  const newProject = () => {
-    
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openProjectModal() {
+    setIsOpen(true);
+  }
+  function closeProjectModal() {
+    setIsOpen(false);
   }
 
   return (
     <>
-      <button onClick={newProject}>Új projekt felvétele</button>
-      <ProjectModal />
+      <button onClick={openProjectModal}>Új projekt felvétele</button>
+      <FirebaseContext.Provider value={{ project, dispatch }}>
+        <h1>Projectek</h1>
+        
+      </FirebaseContext.Provider>
+      <ProjectModal isOpen={modalIsOpen} onRequestClose={closeProjectModal}/>
     </>
   )
 }
