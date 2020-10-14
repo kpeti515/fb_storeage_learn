@@ -1,7 +1,7 @@
 const projectReducer = (state, action) => {
   switch (action.type) {
     case 'LIST_PROJECT':
-      return action.pswList
+      return action.projectList
     default:
       break;
   }

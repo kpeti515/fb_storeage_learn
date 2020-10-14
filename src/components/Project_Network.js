@@ -1,8 +1,9 @@
-import React, {useReducer, useEffect} from 'react'
+import React, { useReducer, useEffect } from 'react'
 import { projectDb } from '../firebase/firebase'
 import projectReducer from '../reducers/projectReducer'
 import FirebaseContext from '../context/FirebaseContext'
-import ProjectModal from './Project_Modal'
+import ProjectModal from './Project_modal'
+import ProjectList from './Project_list'
 
 function ProjectNetwork() {
   const [project, dispatch] = useReducer(projectReducer, [])
@@ -16,8 +17,9 @@ function ProjectNetwork() {
         if (projectList) {
           dispatch({ type: 'LIST_PROJECT', projectList })
         }
+        console.log(projectList);
       })
-
+      
     return () => unsubscribePsw()
   }, [])
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -27,15 +29,25 @@ function ProjectNetwork() {
   function closeProjectModal() {
     setIsOpen(false);
   }
-console.log(project);
+
   return (
     <>
       <button onClick={openProjectModal}>Új projekt felvétele</button>
       <FirebaseContext.Provider value={{ project, dispatch }}>
         <h1>Projectek</h1>
-        
+        <table>
+          <thead>
+            <tr>
+              <th>Rajzszám</th>
+              <th>Beszállító</th>
+              <th>Projekt</th>
+              <th>Vevő</th>
+            </tr>
+          </thead>
+        <ProjectList />
+        </table>
       </FirebaseContext.Provider>
-      <ProjectModal isOpen={modalIsOpen} onRequestClose={closeProjectModal}/>
+      <ProjectModal isOpen={modalIsOpen} onRequestClose={closeProjectModal} />
     </>
   )
 }
