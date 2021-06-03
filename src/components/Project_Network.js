@@ -2,7 +2,7 @@ import React, { useReducer, useEffect } from 'react'
 import { projectDb } from '../firebase/firebase'
 import projectReducer from '../reducers/projectReducer'
 import FirebaseContext from '../context/FirebaseContext'
-import ProjectModal from './Project_modal'
+import ProjectModal from './Project_Modal'
 import ProjectList from './Project_list'
 
 function ProjectNetwork() {

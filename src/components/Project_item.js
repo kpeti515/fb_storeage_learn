@@ -1,7 +1,7 @@
 import React from 'react'
 import { projectDb } from '../firebase/firebase'
 import DeleteConfirmationModal from './DeleteConfirmationModal'
-import ProjectModal from './Project_modal'
+import ProjectModal from './Project_Modal'
 import deleteNotification from './../notifications/deleted'
 
 const ProjectItem = ({
