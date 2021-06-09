@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { projectDb } from '../firebase/firebase'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 import modifyNotification from './../notifications/modified'
 import successNotification from './../notifications/saved'
 const ProjectForm = (props) => {
@@ -20,7 +20,7 @@ const ProjectForm = (props) => {
       'drawingNumber': data.drawingNumber,
       'supplier': data.supplier
     }
-    
+
     let create = true
     if (props.project) {
       docRef = projectDb.doc(props.project.id)

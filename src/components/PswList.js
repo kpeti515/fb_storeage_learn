@@ -10,4 +10,4 @@ const PswList = () => {
   ))
 }
 
-export {PswList as default}
+export { PswList as default }

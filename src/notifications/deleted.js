@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
 const deleteNotification = () => {
   toast.dismiss()
@@ -10,7 +10,7 @@ const deleteNotification = () => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    });
+  })
 }
 
 export default deleteNotification

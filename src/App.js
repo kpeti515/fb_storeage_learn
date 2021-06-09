@@ -1,13 +1,13 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom"
-import './App.css';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import './App.css'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css'
 
 const PswPage = lazy(() => import('./components/Psw_page'))
 const Home = lazy(() => import('./components/Home'))
@@ -65,7 +65,7 @@ function App() {
       </header>
       <ToastContainer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

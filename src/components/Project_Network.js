@@ -17,17 +17,17 @@ function ProjectNetwork() {
         if (projectList) {
           dispatch({ type: 'LIST_PROJECT', projectList })
         }
-        console.log(projectList);
+        console.log(projectList)
       })
-      
+
     return () => unsubscribePsw()
   }, [])
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(false)
   function openProjectModal() {
-    setIsOpen(true);
+    setIsOpen(true)
   }
   function closeProjectModal() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
   return (
@@ -44,7 +44,7 @@ function ProjectNetwork() {
               <th>Vevő</th>
             </tr>
           </thead>
-        <ProjectList />
+          <ProjectList />
         </table>
       </FirebaseContext.Provider>
       <ProjectModal isOpen={modalIsOpen} onRequestClose={closeProjectModal} />

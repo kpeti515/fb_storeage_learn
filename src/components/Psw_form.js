@@ -1,8 +1,8 @@
 
-import React from 'react';
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { pswDb, pswStore, storageRef } from '../firebase/firebase'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 import modifyNotification from './../notifications/modified'
 import successNotification from './../notifications/saved'
 const PswForm = (props) => {
@@ -17,8 +17,8 @@ const PswForm = (props) => {
       const filePathParts = filePath.split('.')
       return filePathParts.length < 2 ? "" : ('.' + filePathParts.pop())
     }
-    const file = data.psw[0];
-    console.log(file);
+    const file = data.psw[0]
+    console.log(file)
     let fileRef = pswStore.child(itemName + fileExtension(file.name))
     let docRef = pswDb.doc(itemName)
 
@@ -31,7 +31,7 @@ const PswForm = (props) => {
       'validationDate': data.validationDate,
       'fileExtension': fileExtension(file.name)
     }
-    
+
     let create = true
     if (props.psw) {
       docRef = pswDb.doc(props.psw.id)
@@ -40,7 +40,7 @@ const PswForm = (props) => {
       pswStore.child(`${props.psw.id}${props.psw.fileExtension}`).delete().then(function () {
         console.log("Document successfully deleted!")
       }).catch(function (error) {
-        console.error("Error removing document: ", error);
+        console.error("Error removing document: ", error)
       })
       fileRef = pswStore.child(props.psw.id + fileExtension(file.name))
       create = false

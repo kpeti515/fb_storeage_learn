@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react'
 import supplierContactReducer from '../reducers/supplierContactReducer'
 import SupplierContactModal from './SupplierContact_modal'
 import FirebaseContext from '../context/FirebaseContext'
@@ -21,17 +21,17 @@ function SupplierContactPage() {
           dispatch({ type: 'LIST_SUPPLIERCONTACT', supplierContactList })
         }
       })
-    
+
     return () => unsubscribeSupplierContact()
   }, [])
 
 
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
-    setIsOpen(true);
+    setIsOpen(true)
   }
   function closeModal() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
   return (
@@ -40,7 +40,7 @@ function SupplierContactPage() {
       <FirebaseContext.Provider value={{ supplierContact, dispatch }}>
         <h1>Beszállítói kapcsolatok</h1>
         <table>
-        <thead>
+          <thead>
             <tr>
               <th>QR kód</th>
               <th>Beszállító</th>
@@ -52,7 +52,7 @@ function SupplierContactPage() {
               <th>Weboldal</th>
             </tr>
           </thead>
-        <SupplierContactList />
+          <SupplierContactList />
         </table>
       </FirebaseContext.Provider>
       <SupplierContactModal isOpen={modalIsOpen} onRequestClose={closeModal} />

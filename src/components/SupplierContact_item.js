@@ -4,19 +4,19 @@ import SupplierContactQRModal from './SupplierContact_QRmodal'
 const SupplierContact = ({
   supplierContact
 }) => {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
-    setIsOpen(true);
+    setIsOpen(true)
   }
   function closeModal() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
   return (
     <React.Fragment>
       <tbody>
         <tr>
-        <td><button onClick={openModal}>QR kód</button></td>
+          <td><button onClick={openModal}>QR kód</button></td>
           <td>{supplierContact.supplier}</td>
           <td>{supplierContact.title} {supplierContact.firstName} {supplierContact.lastName}</td>
           <td><a href={`mailto:${supplierContact.email}`}>{supplierContact.email}</a></td>

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 import Modal from 'react-modal'
 
 Modal.setAppElement('#root')
 const DeleteConfirmationModal = (props) => {
-   
+
   return (
     <Modal
       isOpen={props.isOpen}

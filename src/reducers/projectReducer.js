@@ -3,8 +3,8 @@ const projectReducer = (state, action) => {
     case 'LIST_PROJECT':
       return action.projectList
     default:
-      break;
+      break
   }
 }
 
-export {projectReducer as default}
+export { projectReducer as default }

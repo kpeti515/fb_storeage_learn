@@ -7,27 +7,27 @@ import deleteNotification from './../notifications/deleted'
 const ProjectItem = ({
   project
 }) => {
-  const [modalIsOpenForDelete, setIsOpenForDelete] = React.useState(false);
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpenForDelete, setIsOpenForDelete] = React.useState(false)
+  const [modalIsOpen, setIsOpen] = React.useState(false)
   function openProjectModal() {
-    setIsOpen(true);
+    setIsOpen(true)
   }
   function closeProjectModal() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
   function openDeleteModal() {
-    setIsOpenForDelete(true);
+    setIsOpenForDelete(true)
   }
   function closeDeleteModal() {
-    setIsOpenForDelete(false);
+    setIsOpenForDelete(false)
   }
   function deleteEntity() {
-    
+
     projectDb.doc(project.id).delete().then(deleteNotification()).catch(function (error) {
-      console.error("Error removing document: ", error);
-    });
+      console.error("Error removing document: ", error)
+    })
   }
-console.log(project);
+  console.log(project)
   return (
     <React.Fragment>
       <tbody>
@@ -36,7 +36,7 @@ console.log(project);
           <td>{project.supplier}</td>
           <td>{project.project}</td>
           <td>{project.customer}</td>
-         
+
           <td><button onClick={openProjectModal}>Módosítás</button></td>
           <td><button onClick={openDeleteModal}>Törlés</button></td>
         </tr>

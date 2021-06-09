@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react'
 import pswReducer from '../reducers/pswReducer'
 import PswModal from './Psw_modal'
 import FirebaseContext from '../context/FirebaseContext'
@@ -25,12 +25,12 @@ function PswPage() {
   }, [])
 
 
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(false)
   function openModal() {
-    setIsOpen(true);
+    setIsOpen(true)
   }
   function closeModal() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
   return (

@@ -8,33 +8,33 @@ import deleteNotification from './../notifications/deleted'
 const PswItem = ({
   psw
 }) => {
-  const [modalIsOpenForDelete, setIsOpenForDelete] = React.useState(false);
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpenForDelete, setIsOpenForDelete] = React.useState(false)
+  const [modalIsOpen, setIsOpen] = React.useState(false)
   function openPswModal() {
-    setIsOpen(true);
+    setIsOpen(true)
   }
   function closePswModal() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
   function openDeleteModal() {
-    setIsOpenForDelete(true);
+    setIsOpenForDelete(true)
   }
   function closeDeleteModal() {
-    setIsOpenForDelete(false);
+    setIsOpenForDelete(false)
   }
   function deleteEntity() {
     pswStore.child(`${psw.id}${psw.fileExtension}`).delete().then(function () {
       deleteNotification()
     }).catch(function (error) {
-      console.error("Error removing document: ", error);
+      console.error("Error removing document: ", error)
     })
     pswDb.doc(psw.id).delete().then(function () {
-      console.log("Document successfully deleted!");
+      console.log("Document successfully deleted!")
     }).catch(function (error) {
-      console.error("Error removing document: ", error);
-    });
+      console.error("Error removing document: ", error)
+    })
   }
-console.log(psw);
+  console.log(psw)
   return (
     <React.Fragment>
       <tbody>
@@ -53,7 +53,7 @@ console.log(psw);
                 const url = await storage.refFromURL(`${psw.fileUrl}`).getDownloadURL()
                 const response = await fetch(url)
                 return response.blob()
-                }
+              }
               }
             />
           </td>

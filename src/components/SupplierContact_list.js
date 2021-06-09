@@ -10,4 +10,4 @@ const SupplierContactList = () => {
   ))
 }
 
-export {SupplierContactList as default}
+export { SupplierContactList as default }

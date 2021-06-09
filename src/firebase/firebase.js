@@ -13,10 +13,10 @@ var firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_ID,
   appId: process.env.REACT_APP_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+}
+
+firebase.initializeApp(firebaseConfig)
+firebase.analytics()
 
 export const supplierContactDb = firebase.firestore().collection('supplierContact')
 export const pswDb = firebase.firestore().collection('psw')

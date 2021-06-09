@@ -1,8 +1,8 @@
 
-import React from 'react';
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { supplierContactDb } from '../firebase/firebase'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 // Todo: value={moment().format("YYYY-MM-DD")} + onchange legyen beépítve a datepickerbe
 
@@ -56,33 +56,33 @@ const SupplierContactForm = (props) => {
         placeholder="Ország"
         ref={register}
         name="country"
-      /> 
+      />
       <input
-      type="text"
-      placeholder="Város"
-      ref={register}
-      name="city"
-    />
-     <input
+        type="text"
+        placeholder="Város"
+        ref={register}
+        name="city"
+      />
+      <input
         type="text"
         placeholder="utca, házszám"
         ref={register}
         name="street"
       />
-       <input
+      <input
         type="text"
         placeholder="Irányítószám"
         ref={register}
         name="zipCode"
       />
-       <input
+      <input
         type="text"
         placeholder="e-mail cím"
         ref={register}
         required
         name="email"
       />
-       <input
+      <input
         type="text"
         placeholder="Mobiltelefon szám"
         ref={register}
@@ -101,7 +101,7 @@ const SupplierContactForm = (props) => {
         ref={register}
         name="website"
       />
-      
+
       <button>Submit</button>
     </form>
   )
